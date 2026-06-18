@@ -1,0 +1,538 @@
+c:\Users\hp\OneDrive\Desktop\personal_portfolio\index.html<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radhika Kale | Portfolio</title>
+    <meta name="description" content="Modern dark theme portfolio showcasing web development projects and skills">
+    <meta name="keywords" content="web developer, portfolio, frontend, javascript, react, ui/ux">
+    <meta name="author" content="Radhika Kale">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3b82f6",
+                        secondary: "#8b5cf6",
+                        accent: "#10b981",
+                        dark: "#0f172a",
+                        "dark-light": "#1e293b",
+                        "dark-lighter": "#334155"
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'space': ['Space Grotesk', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        ::selection {
+            background-color: rgba(59, 130, 246, 0.3);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .skill-bar {
+            transition: width 1.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-dark text-gray-300 font-inter min-h-screen">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-dark/90 backdrop-blur-sm border-b border-dark-lighter">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#home" class="text-2xl font-space font-semibold gradient-text">RK</a>
+                <ul id="nav-list" class="hidden md:flex items-center space-x-8"></ul>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+                <ul id="mobile-nav-list" class="space-y-4"></ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="container mx-auto px-4 py-16 md:py-24">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+            <div class="md:w-1/2">
+                <h1 class="text-4xl md:text-6xl font-space font-bold text-white mb-4">
+    Hi, I'm <span class="gradient-text">Radhika Kale</span>
+</h1>
+<p class="text-xl md:text-2xl text-gray-400 mb-6">
+    Computer Science & Engineering Student
+</p>
+<p class="text-lg text-gray-400 mb-8 max-w-2xl">
+    I am a passionate Computer Science student with a strong interest in web development 
+    and modern technologies. I enjoy building responsive and user-friendly websites 
+    while continuously learning and improving my skills.
+</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" class="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                        View Projects
+                    </a>
+                    <a href="#contact" class="border border-dark-lighter hover:border-primary text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-dark-lighter">
+                        <img src="r1.jpeg" alt="Radhika Kale portrait" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 bg-dark-light p-4 rounded-lg shadow-xl">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
+                            <span class="text-sm font-medium">Ready for learning new skills</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="bg-dark-light py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-space font-bold text-white text-center mb-12">
+                Technical <span class="gradient-text">Skills</span>
+            </h2>
+            <div id="skills-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-space font-bold text-white text-center mb-12">
+                Featured <span class="gradient-text">Projects</span>
+            </h2>
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+    <!-- Certificates Section -->
+<section id="certificates" class="bg-dark-light py-16">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-space font-bold text-white text-center mb-12">
+            My <span class="gradient-text">Certificates</span>
+        </h2>
+        <div id="certificates-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </div>
+</section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="bg-dark-light py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-space font-bold text-white text-center mb-12">
+                My <span class="gradient-text">Learning Journey</span>
+            </h2>
+            <div id="experience-timeline" class="max-w-4xl mx-auto"></div>
+        </div>
+    </section>
+    <!-- Coding Profiles -->
+<section class="py-16">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-space font-bold text-white mb-12">
+            Coding <span class="gradient-text">Profiles</span>
+        </h2>
+
+        <div class="flex justify-center flex-wrap gap-6">
+            <a href="https://www.codechef.com/users/radhu_04" target="_blank"
+               class="bg-dark-lighter px-6 py-4 rounded-lg border border-dark-lighter hover:border-primary">
+                🍜 CodeChef
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-space font-bold text-white text-center mb-12">
+                Get In <span class="gradient-text">Touch</span>
+            </h2>
+            <div class="max-w-2xl mx-auto">
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Name</label>
+                            <input type="text" id="name" required class="w-full bg-dark-lighter border border-dark-lighter rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email</label>
+                            <input type="email" id="email" required class="w-full bg-dark-lighter border border-dark-lighter rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-gray-400 mb-2">Subject</label>
+                        <input type="text" id="subject" required class="w-full bg-dark-lighter border border-dark-lighter rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                        <textarea id="message" rows="5" required class="w-full bg-dark-lighter border border-dark-lighter rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary hover:bg-blue-600 text-white font-medium py-3 rounded-lg transition-colors">
+                        Send Message
+                    </button>
+                </form>
+                <div id="form-message" class="mt-4 text-center hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark border-t border-dark-lighter py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#home" class="text-2xl font-space font-semibold gradient-text mb-2 block">Radhika Kale</a>
+                    <p class="text-gray-500 text-sm">Building digital experiences since 2018</p>
+                </div>
+                <ul id="social-links" class="flex space-x-6 mb-6 md:mb-0"></ul>
+                <div class="text-gray-500 text-sm">
+                    <p>&copy; <span id="current-year"></span> Radhika Kale. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data Layer
+       const navigationItems = [
+    { "label": "Home", "href": "#home", "icon": "fas fa-home" },
+    { "label": "Skills", "href": "#skills", "icon": "fas fa-code" },
+    { "label": "Projects", "href": "#projects", "icon": "fas fa-project-diagram" },
+    { "label": "Certificates", "href": "#certificates", "icon": "fas fa-certificate" }, // <-- add this line
+    { "label": "Experience", "href": "#experience", "icon": "fas fa-briefcase" },
+    { "label": "Contact", "href": "#contact", "icon": "fas fa-envelope" }
+];
+
+        const skills = [
+            { "name": "JavaScript", "level": 95, "color": "bg-yellow-500" },
+            { "name": "React", "level": 90, "color": "bg-blue-500" },
+            { "name": "Node.js", "level": 85, "color": "bg-green-500" },
+            { "name": "Core Java", "level": 80, "color": "bg-blue-600" },
+            { "name": "Advanced Java", "level": 95, "color": "bg-teal-500" },
+            { "name": "UI/UX Design", "level": 85, "color": "bg-purple-500" },
+            { "name": "Python", "level": 75, "color": "bg-blue-400" },
+            { "name": "MongoDB", "level": 80, "color": "bg-green-600" },
+            { "name": "AWS", "level": 70, "color": "bg-orange-500" }
+        ];
+
+        const projects = [
+            { 
+                "title": "E-Commerce Platform", 
+                "description": "Full-featured online store with cart, checkout, and admin dashboard",
+                "image": "https://picsum.photos/400/250?random=2",
+                "tags": ["React", "Node.js", "MongoDB", "Stripe"],
+                "github": "#",
+                "demo": "#"
+            },
+            { 
+                "title": "Task Management App", 
+                "description": "Collaborative project management tool with real-time updates",
+                "image": "https://picsum.photos/400/250?random=3",
+                "tags": ["Vue.js", "Firebase", "Tailwind"],
+                "github": "#",
+                "demo": "#"
+            },
+            { 
+                "title": "Weather Dashboard", 
+                "description": "Real-time weather application with location-based forecasts",
+                "image": "https://picsum.photos/400/250?random=4",
+                "tags": ["JavaScript", "API", "Chart.js"],
+                "github": "#",
+                "demo": "#"
+            },
+            { 
+                "title": "Portfolio Website", 
+                "description": "Modern responsive portfolio with dark/light theme toggle",
+                "image": "https://picsum.photos/400/250?random=5",
+                "tags": ["HTML", "CSS", "JavaScript"],
+                "github": "#",
+                "demo": "#"
+            },
+            { 
+                "title": "Chat Application", 
+                "description": "Real-time messaging app with user authentication",
+                "image": "https://picsum.photos/400/250?random=6",
+                "tags": ["Socket.io", "Express", "React"],
+                "github": "#",
+                "demo": "#"
+            },
+            { 
+                "title": "Fitness Tracker", 
+                "description": "Mobile-first fitness app with workout plans and progress tracking",
+                "image": "https://picsum.photos/400/250?random=7",
+                "tags": ["React Native", "GraphQL", "AWS"],
+                "github": "#",
+                "demo": "#"
+            }
+        ];
+        const certificates = [
+    {
+        title: "Web Development Bootcamp",
+        issuer: "Visanet pvt.ltd",
+        description: "Learned HTML, CSS, JavaScript and built projects."
+    },
+    {
+        title: "C Programming",
+        issuer: "Om Sai Computer Edcucation",
+        description: "Learned basics of programming using C."
+    },
+     {
+        title: "C++ Programming",
+        issuer: "Om Sai Computer Edcucation",
+        description: "Learned basics of programming using Cpp."
+    },
+     {
+        title: "Java Programming",
+        issuer: "Om Sai Computer Edcucation",
+        description: "Learned basics of programming using java."
+    },
+     {
+        title: "Data-Structure Programming",
+        issuer: "Om Sai Computer Edcucation",
+        description: "Learned basics of programming using C,java."
+    },
+];
+        const experiences = [
+    {
+        "company": "Personal Projects",
+        "position": "Web Development Learner",
+        "period": "2026 - Present",
+        "description": "Building personal projects like portfolio websites, weather apps, and task managers using HTML, CSS, and JavaScript.",
+        "icon": "fas fa-code"
+    },
+    {
+        "company": "Academic Learning",
+        "position": "CSE Student",
+        "period": "2026 - Present",
+        "description": "Pursuing Computer Science & Engineering, learning programming languages like C, Java, and fundamentals of data structures.",
+        "icon": "fas fa-graduation-cap"
+    },
+    {
+        "company": "Self Learning",
+        "position": "Frontend Development",
+        "period": "2025 - Present",
+        "description": "Exploring frontend technologies like React and improving problem-solving skills through practice and projects.",
+        "icon": "fas fa-laptop-code"
+    }
+];
+
+        const socialLinks = [
+            { "platform": "GitHub", "url": "https://github.com/Radhikakale-dev", "icon": "fab fa-github" },
+            { "platform": "LinkedIn", "url": "https://www.linkedin.com/in/radhika-kale-60504831a", "icon": "fab fa-linkedin" },
+            { "platform": "Instagram", "url": "#", "icon": "fab fa-instagram" }
+        ];
+
+        // Reusable Render Functions
+        function renderNavigation(items) {
+            return items.map(item => 
+                `<li>
+                    <a href="${item.href}" class="text-gray-400 hover:text-white transition-colors flex items-center space-x-2">
+                        <i class="${item.icon}"></i>
+                        <span>${item.label}</span>
+                    </a>
+                </li>`
+            ).join("");
+        }
+
+        function renderSkills(items) {
+            return items.map(skill => 
+                `<div class="bg-dark-lighter rounded-lg p-6 card-hover">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-lg font-semibold text-white">${skill.name}</h3>
+                        <span class="text-primary font-medium">${skill.level}%</span>
+                    </div>
+                    <div class="h-2 bg-dark rounded-full overflow-hidden">
+                        <div class="h-full ${skill.color} skill-bar" style="width: 0%" data-width="${skill.level}"></div>
+                    </div>
+                </div>`
+            ).join("");
+        }
+
+        function renderProjects(items) {
+            return items.map(project => 
+                `<div class="bg-dark-light rounded-xl overflow-hidden card-hover">
+                    <img src="${project.image}" alt="${project.title} screenshot" class="w-full h-48 object-cover" loading="lazy">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-2">${project.title}</h3>
+                        <p class="text-gray-400 mb-4">${project.description}</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${project.tags.map(tag => `<span class="px-3 py-1 bg-dark-lighter text-gray-300 rounded-full text-sm">${tag}</span>`).join("")}
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="${project.github}" class="text-gray-400 hover:text-white transition-colors">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="${project.demo}" class="text-gray-400 hover:text-white transition-colors">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>`
+            ).join("");
+        }
+        function renderCertificates(items) {
+    return items.map(cert => `
+        <div class="bg-dark-lighter p-6 rounded-lg card-hover">
+            <h3 class="text-white text-xl mb-2">${cert.title}</h3>
+            <p class="text-primary text-sm mb-2">${cert.issuer}</p>
+            <p class="text-gray-400">${cert.description}</p>
+        </div>
+    `).join("");
+}
+
+        function renderExperiences(items) {
+            return items.map((exp, index) => 
+                `<div class="relative pl-10 pb-8 ${index !== items.length - 1 ? 'border-l border-dark-lighter' : ''}">
+                    <div class="absolute left-[-8px] top-0 w-4 h-4 bg-primary rounded-full"></div>
+                    <div class="flex items-center space-x-3 mb-2">
+                        <i class="${exp.icon} text-primary text-lg"></i>
+                        <div>
+                            <h3 class="text-xl font-semibold text-white">${exp.position}</h3>
+                            <p class="text-gray-400">${exp.company} • ${exp.period}</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">${exp.description}</p>
+                </div>`
+            ).join("");
+        }
+
+        function renderSocialLinks(items) {
+    return items.map(item => 
+        `<li>
+            <a href="${item.url}" class="text-gray-400 hover:text-white text-2xl transition-colors" target="_blank" rel="noopener noreferrer" aria-label="${item.platform}">
+                <i class="${item.icon}"></i>
+            </a>
+        </li>`
+    ).join("");
+}
+
+        // Initialize Page Content
+        document.getElementById("nav-list").innerHTML = renderNavigation(navigationItems);
+        document.getElementById("mobile-nav-list").innerHTML = renderNavigation(navigationItems);
+        document.getElementById("skills-grid").innerHTML = renderSkills(skills);
+        document.getElementById("projects-grid").innerHTML = renderProjects(projects);
+        document.getElementById("experience-timeline").innerHTML = renderExperiences(experiences);
+        document.getElementById("social-links").innerHTML = renderSocialLinks(socialLinks);
+        document.getElementById("current-year").textContent = new Date().getFullYear();
+          document.getElementById("projects-grid").innerHTML = renderProjects(projects);
+        document.getElementById("certificates-grid").innerHTML = renderCertificates(certificates);
+        document.getElementById("experience-timeline").innerHTML = renderExperiences(experiences);
+        // Mobile Menu Toggle
+        document.getElementById("mobile-menu-btn").addEventListener("click", function() {
+            const menu = document.getElementById("mobile-menu");
+            menu.classList.toggle("hidden");
+            this.innerHTML = menu.classList.contains("hidden") 
+                ? '<i class="fas fa-bars text-xl"></i>' 
+                : '<i class="fas fa-times text-xl"></i>';
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.addEventListener("click", function(event) {
+            const link = event.target.closest("a[href^='#']");
+            if (!link) return;
+            
+            event.preventDefault();
+            const targetId = link.getAttribute("href");
+            if (targetId === "#") return;
+            
+            const target = document.querySelector(targetId);
+            if (target) {
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById("mobile-menu");
+                const menuBtn = document.getElementById("mobile-menu-btn");
+                if (!mobileMenu.classList.contains("hidden")) {
+                    mobileMenu.classList.add("hidden");
+                    menuBtn.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+                }
+                
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: "smooth"
+                });
+            }
+        });
+
+        // Animate Skill Bars on Scroll
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll(".skill-bar");
+            skillBars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    const width = bar.getAttribute("data-width");
+                    bar.style.width = width + "%";
+                }
+            });
+        }
+
+        // Contact Form Submission
+        document.getElementById("contact-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const formMessage = document.getElementById("form-message");
+            formMessage.textContent = "Thank you for your message! I'll get back to you soon.";
+            formMessage.className = "mt-4 text-center text-accent font-medium";
+            formMessage.classList.remove("hidden");
+            
+            // Reset form
+            this.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.add("hidden");
+            }, 5000);
+        });
+
+        // Initialize animations on load
+        window.addEventListener("load", () => {
+            animateSkillBars();
+        });
+
+        // Animate skill bars on scroll
+        window.addEventListener("scroll", animateSkillBars);
+
+        // Add hover effect to project cards
+        document.addEventListener("mouseover", function(event) {
+            const card = event.target.closest(".card-hover");
+            if (card) {
+                card.style.transition = "all 0.3s ease";
+            }
+        }, true);
+    </script>
+</body>
+</html>

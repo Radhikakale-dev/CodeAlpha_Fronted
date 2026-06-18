@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Player</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f0f2f5;
+}
+
+.player{
+    width:380px;
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.song-info{
+    text-align:center;
+    margin:15px 0;
+}
+
+.song-info h3{
+    color:#333;
+}
+
+.song-info p{
+    color:gray;
+}
+
+.controls{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin:15px 0;
+}
+
+.controls button{
+    padding:10px 15px;
+    border:none;
+    border-radius:8px;
+    background:#333;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.controls button:hover{
+    background:#555;
+}
+
+#progress{
+    width:100%;
+    margin:10px 0;
+}
+
+.volume{
+    margin-top:10px;
+}
+
+.volume label{
+    font-weight:bold;
+}
+
+#volume{
+    width:100%;
+}
+
+.playlist{
+    margin-top:20px;
+}
+
+.playlist h4{
+    margin-bottom:10px;
+}
+
+.playlist ul{
+    list-style:none;
+}
+
+.playlist li{
+    padding:8px;
+    cursor:pointer;
+    border-bottom:1px solid #ddd;
+}
+
+.playlist li:hover{
+    background:#f5f5f5;
+}
+
+.time{
+    display:flex;
+    justify-content:space-between;
+    font-size:14px;
+    color:gray;
+}
+</style>
+</head>
+<body>
+
+<div class="player">
+
+    <h2>Music Player</h2>
+
+    <div class="song-info">
+        <h3 id="title">Song Title</h3>
+        <p id="artist">Artist Name</p>
+    </div>
+
+    <audio id="audio"></audio>
+
+    <input type="range" id="progress" value="0">
+
+    <div class="time">
+        <span id="currentTime">0:00</span>
+        <span id="duration">0:00</span>
+    </div>
+
+    <div class="controls">
+        <button onclick="prevSong()">⏮</button>
+        <button onclick="playPause()">▶ / ⏸</button>
+        <button onclick="nextSong()">⏭</button>
+    </div>
+
+    <div class="volume">
+        <label>Volume</label>
+        <input type="range" id="volume"
+               min="0" max="1" step="0.1" value="1">
+    </div>
+
+    <div class="playlist">
+        <h4>Playlist</h4>
+        <ul id="playlist"></ul>
+    </div>
+
+</div>
+
+<script>
+
+const songs = [
+{
+title:"Song 1",
+artist:"Artist 1",
+src:"song1.mp3"
+},
+{
+title:"Song 2",
+artist:"Artist 2",
+src:"song2.mp3"
+},
+{
+title:"Song 3",
+artist:"Artist 3",
+src:"song3.mp3"
+}
+];
+
+const audio = document.getElementById("audio");
+const title = document.getElementById("title");
+const artist = document.getElementById("artist");
+const progress = document.getElementById("progress");
+const volume = document.getElementById("volume");
+const playlist = document.getElementById("playlist");
+
+let currentSong = 0;
+
+function loadSong(index){
+
+    audio.src = songs[index].src;
+    title.textContent = songs[index].title;
+    artist.textContent = songs[index].artist;
+}
+
+loadSong(currentSong);
+
+function playPause(){
+
+    if(audio.paused){
+        audio.play();
+    }
+    else{
+        audio.pause();
+    }
+}
+
+function nextSong(){
+
+    currentSong++;
+
+    if(currentSong >= songs.length){
+        currentSong = 0;
+    }
+
+    loadSong(currentSong);
+    audio.play();
+}
+
+function prevSong(){
+
+    currentSong--;
+
+    if(currentSong < 0){
+        currentSong = songs.length - 1;
+    }
+
+    loadSong(currentSong);
+    audio.play();
+}
+
+/* Progress Bar */
+
+audio.addEventListener("timeupdate", ()=>{
+
+    progress.value =
+    (audio.currentTime / audio.duration) * 100;
+
+    document.getElementById("currentTime")
+    .textContent = formatTime(audio.currentTime);
+
+});
+
+/* Duration */
+
+audio.addEventListener("loadedmetadata", ()=>{
+
+    document.getElementById("duration")
+    .textContent = formatTime(audio.duration);
+
+});
+
+/* Seek */
+
+progress.addEventListener("input", ()=>{
+
+    audio.currentTime =
+    (progress.value / 100) * audio.duration;
+
+});
+
+/* Volume */
+
+volume.addEventListener("input", ()=>{
+
+    audio.volume = volume.value;
+
+});
+
+/* Time Format */
+
+function formatTime(seconds){
+
+    let min = Math.floor(seconds / 60);
+    let sec = Math.floor(seconds % 60);
+
+    if(sec < 10){
+        sec = "0" + sec;
+    }
+
+    return min + ":" + sec;
+}
+
+/* Playlist */
+
+songs.forEach((song,index)=>{
+
+    let li = document.createElement("li");
+
+    li.textContent =
+    song.title + " - " + song.artist;
+
+    li.onclick = ()=>{
+
+        currentSong = index;
+        loadSong(currentSong);
+        audio.play();
+
+    };
+
+    playlist.appendChild(li);
+
+});
+
+/* Autoplay Next Song */
+
+audio.addEventListener("ended", ()=>{
+
+    nextSong();
+
+});
+
+</script>
+
+</body>
+</html>
